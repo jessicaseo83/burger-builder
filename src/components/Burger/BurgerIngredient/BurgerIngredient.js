@@ -1,5 +1,5 @@
-import def from 'ajv/dist/vocabularies/applicator/additionalItems';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const burgerIngredient = (props) => {
   let ingredient = null;
@@ -35,5 +35,9 @@ const burgerIngredient = (props) => {
 
   }
 }
+
+burgerIngredient.PropTypes = {
+  type: PropTypes.string.isRequired
+};
 
 export default burgerIngredient;

@@ -4,10 +4,10 @@ import Burger from '../../components/Burger/Burger';
 
 export default function BurgerBuilder() {
   const [ ingredient, setIngredient ] = useState(
-    { salad: 1,
+    { vaggie: 0,
       bacon: 1,
       cheese: 2,
-      meat: 2
+      meat: 1
     }
   )
     return (

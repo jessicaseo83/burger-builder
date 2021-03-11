@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Aux from '../../hoc/Aux';
 import Burger from '../../components/Burger/Burger';
+import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 
 export default function BurgerBuilder() {
   const [ ingredient, setIngredient ] = useState(
@@ -13,7 +14,7 @@ export default function BurgerBuilder() {
     return (
       <Aux>
         <Burger ingredients={ingredient}/>
-        <div>Build Controls</div>
+        <BuildControls />
       </Aux>
     );
 

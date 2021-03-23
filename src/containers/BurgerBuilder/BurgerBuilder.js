@@ -24,11 +24,7 @@ export default function BurgerBuilder() {
   const addIngredientHandler = (type) => {
     const prevCount = ingredient[type];
     const updatedCount = prevCount + 1;
-    
-    const updatedIngredient = {
-      ...ingredient,
-      [type]: updatedCount 
-    }
+
     const priceAddition = INGREDIENT_PRICES[type];
     const prevPrice = totalPrice;
     const newPrice = prevPrice + priceAddition;
@@ -38,13 +34,25 @@ export default function BurgerBuilder() {
   }
 
   const removeIngredientHandler = (type) => {
-
+    const prevCount = ingredient[type];
+    if (prevCount <= 0) {
+      return;
+    }
+    const updatedCount = prevCount - 1;
+    const priceDeduction = INGREDIENT_PRICES[type];
+    const prevPrice = totalPrice;
+    const newPrice = prevPrice - priceDeduction;
+    setTotalPrice({ totalPrice: newPrice });
+    setIngredient({...ingredient,
+      [type]: updatedCount  });
   }
-    return (
+    return ( 
       <Aux>
         <Burger ingredients={ingredient}/>
         <BuildControls 
-          ingredientAdded={addIngredientHandler}/>
+          ingredientAdded={addIngredientHandler}
+          ingredientRemoved={removeIngredientHandler}
+          ingredients={ingredient}/>
       </Aux>
     );
 

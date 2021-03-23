@@ -7,7 +7,7 @@ const INGREDIENT_PRICES = {
   veggie: 0.5,
   cheese: 0.4,
   meat: 1.3,
-  
+  bacon: 0.3
 }
 
 export default function BurgerBuilder() {
@@ -19,16 +19,18 @@ export default function BurgerBuilder() {
     },
   )
   const [ totalPrice, setTotalPrice ] = useState({
-    totalPrice: 4
+    finalPrice: 4
   });
+
   const addIngredientHandler = (type) => {
     const prevCount = ingredient[type];
     const updatedCount = prevCount + 1;
 
     const priceAddition = INGREDIENT_PRICES[type];
-    const prevPrice = totalPrice;
+    const prevPrice = totalPrice.finalPrice;
     const newPrice = prevPrice + priceAddition;
-    setTotalPrice({ totalPrice: newPrice });
+    setTotalPrice({ ...totalPrice, finalPrice : newPrice });
+    console.log(totalPrice);  
     setIngredient({...ingredient,
       [type]: updatedCount  });
   }
@@ -40,9 +42,9 @@ export default function BurgerBuilder() {
     }
     const updatedCount = prevCount - 1;
     const priceDeduction = INGREDIENT_PRICES[type];
-    const prevPrice = totalPrice;
+    const prevPrice = totalPrice.finalPrice;
     const newPrice = prevPrice - priceDeduction;
-    setTotalPrice({ totalPrice: newPrice });
+    setTotalPrice({ ...totalPrice, finalPrice: newPrice });
     setIngredient({...ingredient,
       [type]: updatedCount  });
   }
@@ -52,7 +54,8 @@ export default function BurgerBuilder() {
         <BuildControls 
           ingredientAdded={addIngredientHandler}
           ingredientRemoved={removeIngredientHandler}
-          ingredients={ingredient}/>
+          ingredients={ingredient}
+          price={totalPrice.finalPrice}/>
       </Aux>
     );
 

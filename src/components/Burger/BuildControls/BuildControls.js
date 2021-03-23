@@ -12,6 +12,7 @@ export default function BuildControls(props) {
   ];
   return (
     <div className="BuildControls">
+      <p>Price: <strong>{props.price.toFixed(2)}</strong></p>
       {controls.map(control => (
         <BuildControl 
           key={control.label} 

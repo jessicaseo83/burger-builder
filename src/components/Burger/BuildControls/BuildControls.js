@@ -10,6 +10,13 @@ export default function BuildControls(props) {
     { label: 'Meat', type: 'meat' },
 
   ];
+  const hasIngredients = () => {
+    const ingredients = {
+      ...props.ingredients
+    };
+    return Object.values(ingredients).some(amount => amount > 0)
+  }
+
   return (
     <div className="BuildControls">
       <p>Price: <strong>{props.price.toFixed(2)}</strong></p>
@@ -22,6 +29,10 @@ export default function BuildControls(props) {
           disabled={props.ingredients[control.type] === 0 ? true : false}
         />
       ))}
+      <button 
+        disabled={!hasIngredients()}
+        className="OrderButton">ORDER NOW!
+      </button>
     </div>
   )
 }

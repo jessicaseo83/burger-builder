@@ -17,6 +17,8 @@ export default function BuildControls(props) {
           key={control.label} 
           label={control.label}
           added={() => props.ingredientAdded(control.type)}
+          removed={() => props.ingredientRemoved(control.type)}
+          disabled={props.ingredients[control.type] === 0 ? true : false}
         />
       ))}
     </div>

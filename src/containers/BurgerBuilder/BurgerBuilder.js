@@ -22,6 +22,7 @@ export default function BurgerBuilder() {
     finalPrice: 4
   });
 
+
   const addIngredientHandler = (type) => {
     const prevCount = ingredient[type];
     const updatedCount = prevCount + 1;
@@ -30,7 +31,6 @@ export default function BurgerBuilder() {
     const prevPrice = totalPrice.finalPrice;
     const newPrice = prevPrice + priceAddition;
     setTotalPrice({ ...totalPrice, finalPrice : newPrice });
-    console.log(totalPrice);  
     setIngredient({...ingredient,
       [type]: updatedCount  });
   }
@@ -48,6 +48,8 @@ export default function BurgerBuilder() {
     setIngredient({...ingredient,
       [type]: updatedCount  });
   }
+ 
+
     return ( 
       <Aux>
         <Burger ingredients={ingredient}/>

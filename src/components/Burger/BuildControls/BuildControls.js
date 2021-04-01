@@ -31,6 +31,7 @@ export default function BuildControls(props) {
       ))}
       <button 
         disabled={!hasIngredients()}
+        onClick={props.ordered}
         className="OrderButton">ORDER NOW!
       </button>
     </div>

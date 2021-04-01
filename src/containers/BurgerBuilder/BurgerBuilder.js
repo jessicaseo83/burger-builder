@@ -55,12 +55,16 @@ export default function BurgerBuilder() {
  
   
   const purchaseHandler = () => {
-      setPurchasing(true); 
+    setPurchasing(true); 
+  }
+
+  const purchaseCancelHandler = () => {
+    setPurchasing(false);
   }
 
     return ( 
       <Aux>
-        <Modal show={purchasing}>
+        <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
           <OrderSummary ingredients={ingredient}/>
         </Modal>
         <Burger ingredients={ingredient}/>

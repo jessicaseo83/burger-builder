@@ -5,6 +5,7 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 
+
 const INGREDIENT_PRICES = {
   veggie: 0.5,
   cheese: 0.4,
@@ -24,6 +25,7 @@ export default function BurgerBuilder() {
     finalPrice: 4
   });
 
+  const [ purchasing, setPurchasing ] = useState(false);
 
   const addIngredientHandler = (type) => {
     const prevCount = ingredient[type];
@@ -51,10 +53,14 @@ export default function BurgerBuilder() {
       [type]: updatedCount  });
   }
  
+  
+  const purchaseHandler = () => {
+      setPurchasing(true); 
+  }
 
     return ( 
       <Aux>
-        <Modal>
+        <Modal show={purchasing}>
           <OrderSummary ingredients={ingredient}/>
         </Modal>
         <Burger ingredients={ingredient}/>
@@ -62,7 +68,8 @@ export default function BurgerBuilder() {
           ingredientAdded={addIngredientHandler}
           ingredientRemoved={removeIngredientHandler}
           ingredients={ingredient}
-          price={totalPrice.finalPrice}/>
+          price={totalPrice.finalPrice}
+          ordered={purchaseHandler}/>
       </Aux>
     );
 

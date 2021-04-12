@@ -62,10 +62,17 @@ export default function BurgerBuilder() {
     setPurchasing(false);
   }
 
+  const purchaseContinueHandler = () => {
+    alert('Continue to order :-)');
+  }
+
     return ( 
       <Aux>
         <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
-          <OrderSummary ingredients={ingredient}/>
+          <OrderSummary 
+            ingredients={ingredient}
+            purchaseCancelled={purchaseCancelHandler}
+            purchaseContinued={purchaseContinueHandler}/>
         </Modal>
         <Burger ingredients={ingredient}/>
         <BuildControls 
